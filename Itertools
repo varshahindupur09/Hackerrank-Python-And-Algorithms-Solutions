@@ -1,0 +1,48 @@
+## Hackerrank Itertools.product()
+
+** QUESTION 1 **
+
+Compress the String!
+
+** SOLUTION TO QUESTION 1 **
+
+from itertools import product
+
+x = list(map(int, input().split()))
+y = list(map(int, input().split()))
+
+l = list(product(x,y))
+
+s = str()
+for i in l:
+    s += str(i) + ' '
+print(s)
+
+-----------------------------------------------------------
+
+** QUESTION 2 **
+
+
+Compress the String with Itertools.group_by() function
+
+** SOLUTION TO QUESTION 2 **
+
+P.S. To understand this question, groupby function from itertools must be understood.
+
+from itertools import groupby
+s = input()
+
+l = [ i for i in s]
+
+#print([g, k) for k, g in groupby(l)] #ans: [('1', ['1']), ('2', ['2', '2', '2']), ('3', ['3']), ('1', ['1', '1'])]
+# above code shows first the value in string and next the number of times that value has appeared in the string
+
+x = [(int(len(list(g))), int(k)) for k, g in groupby(l)]
+# print(x) # ans: [(1, 1), (3, 2), (1, 3), (2, 1)]  
+
+res = str()
+
+for i in x:
+    res += str(i)+' '
+    
+print(res) # ans: (1, 1) (3, 2) (1, 3) (2, 1) 
