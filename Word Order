@@ -1,0 +1,17 @@
+# Utilizing a dictionary to do this program is easier
+
+n = int(input().strip())
+count_dict = {}
+words = []
+for i in range(n):
+  word = input().strip()
+  if word in count_dict:
+    count_dict[word] += 1
+  else:
+    count_dict[word] = 1
+    words.append(word)
+    
+print(len(words))
+print(' '.join([str(count_dict[word]) for word in words]))
+
+# here join allows me to concatenate all the numbers together and the words list is assisting in getting the word count
