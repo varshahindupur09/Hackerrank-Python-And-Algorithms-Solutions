@@ -1,0 +1,110 @@
+### Question:
+
+A newly opened multinational brand has decided to base their company logo on the three most common characters in the company name. They are now trying out various combinations of company names and logos based on this condition. Given a string , which is the company name in lowercase letters, your task is to find the top three most common characters in the string.
+
+Print the three most common characters along with their occurrence count.
+Sort in descending order of occurrence count.
+If the occurrence count is the same, sort the characters in alphabetical order.
+For example, according to the conditions described above,
+ would have it's logo with the letters .
+
+Input Format
+
+A single line of input containing the string .
+
+Constraints
+
+ has at least  distinct characters
+Output Format
+
+Print the three most common characters along with their occurrence count each on a separate line.
+Sort output in descending order of occurrence count.
+If the occurrence count is the same, sort the characters in alphabetical order.
+
+Sample Input 0
+
+aabbbccde
+Sample Output 0
+
+b 3
+a 2
+c 2
+Explanation 0
+
+
+Here, b occurs  times. It is printed first.
+Both a and c occur  times. So, a is printed in the second line and c in the third line because a comes before c in the alphabet.
+
+Note: The string  has at least  distinct characters.
+
+
+### Answer 1: Easy Method
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+def common_chars(string):
+    d = {}
+    lis = []
+    for s in string:
+        if s not in d.keys():
+            d[s] = d[s] + 1
+        else:
+            d[s] = 1
+        lis.append(d)
+            
+    print(lis)
+
+
+
+if __name__ == '__main__':
+    s = input()
+    
+### Answer 2: Next Method
+
+from collections import Counter
+
+if __name__ == '__main__':
+    s = input()
+    ss = sorted(s)
+    
+    frequency = Counter(list(ss))
+    
+    for k,v in frequency.most_common(3):
+        print(k,v)
+        
+### Answer 3: A little complicated method
+
+from collections import Counter
+
+if __name__ == '__main__':
+    
+    # taking imput and then sorting 
+    s = sorted(input().strip())
+    
+    # finiding frequency 
+    s_counter = Counter(s).most_common()
+    #print(s_counter) # [('b', 3), ('a', 2), ('c', 2), ('d', 1), ('e', 1)]
+    
+    # using lambda function sort the items with frequencies in descending order
+    s_counter = sorted(s_counter, key = lambda x: (x[1] * -1, x[0] ))
+    # [('b', 3), ('a', 2), ('c', 2), ('d', 1), ('e', 1)]
+
+    # printing the first three items
+    for i in range(0, 3):
+        print(s_counter[i][0], s_counter[i][1])
+        
+        
+ ### Answer 4: Class Method
+ 
+from collections import Counter, OrderedDict
+
+class OrderedCounter(Counter, OrderedDict):
+    pass
+    
+[print(*c) for c in OrderedCounter(sorted(input())).most_common(3)]
