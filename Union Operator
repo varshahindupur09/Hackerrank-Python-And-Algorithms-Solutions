@@ -1,0 +1,52 @@
+# Topic Union Operation : HackerRank Solution
+Link: https://www.hackerrank.com/challenges/py-set-union/problem?isFullScreen=true
+
+Union is used to add up two sets of Sample Spaces. 
+
+I tested my code on link below for union only to understand whether I'm going in the right direction or not. 
+https://www.mycompiler.io/new/python
+
+*** 
+``` # english newspaper
+ne = 9
+le = set()
+# french newspaper
+nf = 9
+lf = set()
+for i in '1 2 3 4 5 6 7 8 9'.split(' '):
+    le.add(i)
+
+for i in '10 1 2 3 11 21 55 6 8'.split(' '):
+    lf.add(i)
+    
+m = le.union(lf)
+print(len(m)) ```
+***
+
+Previously I tried adding up by converting to string but that would not allow all the digits like '10', '55' to stay in the set that would be later created. Hence the other option I followed 
+was to create union of a set which was fairly simple to do.
+
+The one that would work on HackerRank:
+***
+```
+# english newspaper
+ne = input()
+le = set()
+
+for i in str(input()).split(' '):
+    le.add(i)
+# print(le)
+
+# french newspaper
+nf = input()
+lf = set()
+
+for j in str(input()).split(' '):
+    lf.add(j)
+# print(lf)
+
+m = le.union(lf)
+print(len(m))
+
+***
+```
