@@ -1,0 +1,38 @@
+def product_operations(operations, elements):
+    y = []
+    products = []
+
+    min_val = float('inf')
+    max_val = float('-inf')
+
+    for i in range(len(operations)):
+        operation = operations[i]
+        element = elements[i]
+        print("op ", operation, "ele ", element)
+
+        if operation == 'push':
+            y.append(element)
+            min_val = min(min_val, element)
+            max_val = max(max_val, element)
+        if operation == 'pop':
+            y.remove(element)
+            if not y:
+                min_val = float('inf')
+                max_val = float('-inf')
+            else:
+                min_val = min(y)
+                max_val = max(y)
+
+        print("y", y)
+        product = min_val * max_val
+        products.append(product)
+
+    return products
+
+# Example usage
+size = 4
+operations = ['push', 'push', 'push', 'pop']
+elements = [1, 2, 3, 1]
+
+result = perform_operations(operations, elements)
+print(result)
