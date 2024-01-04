@@ -1,0 +1,68 @@
+# Question:
+# Let's learn about list comprehensions! You are given three integers  and  representing the dimensions of a cuboid along with an integer . Print a list of all possible coordinates given by  on a 3D grid where the sum of  is not equal to . Here, . Please use list comprehensions rather than multiple loops, as a learning exercise.
+
+Example
+All permutations of  are:
+.
+
+Print an array of the elements that do not sum to .
+
+
+Input Format
+
+Four integers  and , each on a separate line.
+
+Constraints
+
+Print the list in lexicographic increasing order.
+
+Sample Input 0
+
+1
+1
+1
+2
+Sample Output 0
+
+[[0, 0, 0], [0, 0, 1], [0, 1, 0], [1, 0, 0], [1, 1, 1]]
+Explanation 0
+
+Each variable  and  will have values of  or . All permutations of lists in the form .
+Remove all arrays that sum to  to leave only the valid permutations.
+
+Sample Input 1
+
+2
+2
+2
+2
+Sample Output 1
+
+[[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 1, 2], [0, 2, 1], [0, 2, 2], [1, 0, 0], [1, 0, 2], [1, 1, 1], [1, 1, 2], [1, 2, 0], [1, 2, 1], [1, 2, 2], [2, 0, 1], [2, 0, 2], [2, 1, 0], [2, 1, 1], [2, 1, 2], [2, 2, 0], [2, 2, 1], [2, 2, 2]]
+
+###################################################
+
+Solution:
+###################################################
+
+if __name__ == '__main__':
+    x,y,z,n = (int(input().strip()) for _ in range(4))
+    # print(x,y,z,n)
+    arr = [[i,j,k] for i in range(x+1) for j in range(y+1) for k in range(z+1) if i+j+k!=n]
+    print(arr)
+
+###################################################
+
+Explanation:
+###################################################
+
+This line of code is using a generator expression to read four integer inputs from the user and assign them to variables x, y, z, and n. Let's break down the code:
+
+int(input().strip()): This part takes user input as a string using the input() function, removes leading and trailing whitespaces with strip(), and then converts it to an integer with int().
+
+for _ in range(4): This part creates a loop that iterates four times (for each input).
+
+(int(input().strip()) for _ in range(4)): The generator expression generates four integers by iterating over the loop, and these integers are assigned to the variables x, y, z, and n simultaneously. The use of _ as a variable name is a convention to indicate that the variable is not going to be used in the loop body.
+
+So, after this line of code is executed, the variables x, y, z, and n will contain the four integer values entered by the user.
+###################################################
