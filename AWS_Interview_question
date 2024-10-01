@@ -1,0 +1,72 @@
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# https://leetcode.com/discuss/interview-question/690707/Amazon-or-Phone-Interview-or-Group-Product-Id-pairs-into-Categories
+
+# AWS interview question
+
+To solve the problem where we are given a list of product ID pairs, and we need to group them based on their categories while ensuring no two product pairs are from the same category, we can approach it step-by-step:
+
+Steps to Solve:
+Define a Mapping Between Products and Categories: Each product pair belongs to a certain category. We can assume this is predefined or provided in the problem's context.
+
+Group Product Pairs by Category: For each pair of product IDs, assign them to their respective category.
+
+Ensure No Two Pairs From the Same Category Are Recommended Together: This step can be done by selecting pairs from different categories and returning them as recommendations.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+This solution focuses on getting the recommendation pair which is pure python
+
+# elaborating on
+# Input: ((1,2), (2,5), (3,4), (4,6), (6,8), (5,7), (5,2), (3,1))
+# Output: (1, 2), (2, 5), (6, 8)
+
+from collections import defaultdict
+import random
+
+product_pairs = [(1,2), (2,5), (3,4), (4,6), (6,8), (5,7), (5,2), (3,1)]
+pair_to_category = {
+    (1,2): 1, 
+    (2,5): 2,
+    (3,4): 3,
+    (4,6): 1, 
+    (6,8): 3,
+    (5,7): 2,
+    (5,2): 2, 
+    (3,1): 1
+}
+
+def categorize_product_pairs(product_pairs, pair_to_category) -> dict:
+    categorized_pairs = {}
+    list_pairs = []
+    for pair, category in pair_to_category.items():
+        print(pair, category)
+        if category not in categorized_pairs:
+            categorized_pairs[category] = []
+        else:
+            categorized_pairs[category].append(pair)
+
+    return categorized_pairs
+
+# {1: [(4, 6), (3, 1)], 2: [(5, 7), (5, 2)], 3: [(6, 8)]}
+
+def recommendation_system(categorized_pairs):
+    random_rec = []
+    for category, pairs in categorized_pairs.items():
+        if pairs:
+            random_pair = random.choice(pairs)
+            random_rec.append(random_pair)
+
+    return random_rec
+
+categorized_pairs = categorize_product_pairs(product_pairs, pair_to_category)
+print(categorized_pairs)
+random_rec = recommendation_system(categorized_pairs)
+print(random_rec)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Input = ((1,2), (2,5), (3,4), (4,6), (6,8), (5,7), (5,2), (5,2))
+# Output = ((1,2,5,7), (3,4,6,8))
+# Test case I came up with:
+# Input: ((1,2), (2,5), (3,4), (4,6), (6,8), (5,7), (5,2), (3,1))
+# Output: ((1,2,5,7,3,4,6,8))
+
